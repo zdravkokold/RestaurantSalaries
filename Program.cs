@@ -1,7 +1,7 @@
 using RestaurantSalaries.Data;
+using RestaurantSalaries.Forms;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using RestaurantSalaries.Forms;
 
 namespace RestaurantSalaries
 {
@@ -22,7 +22,7 @@ namespace RestaurantSalaries
 
             ApplicationConfiguration.Initialize();
             var restaurantService = new RestaurantService(dbContext);
-            Application.Run(new HomeForm(restaurantService));
+            Application.Run(new LoginForm(dbContext));
         }
     }
 }

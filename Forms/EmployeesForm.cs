@@ -13,13 +13,14 @@ namespace RestaurantSalaries.Forms
             InitializeComponent();
             this.restaurantService = restaurantService;
             LoadEmployees();
-            formPanel.Visible = false; // Скрива формата за редакция по подразбиране
+            formPanel.Visible = false;
         }
 
         private void LoadEmployees()
         {
             employeesGridView.DataSource = restaurantService.GetAllEmployees().ToList();
             employeesGridView.Columns["Id"].Visible = false;
+            employeesGridView.Columns["Salaries"].Visible = false;
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -27,6 +28,10 @@ namespace RestaurantSalaries.Forms
             selectedEmployee = null;
             nameTextBox.Text = "";
             positionTextBox.Text = "";
+            hourlyRateTextBox.Text = "";
+            hoursWorkedTextBox.Text = "";
+            bonusTextBox.Text = "";
+            deductionsTextBox.Text = "";
             formPanel.Visible = true;
         }
 
@@ -43,6 +48,10 @@ namespace RestaurantSalaries.Forms
 
             nameTextBox.Text = selectedEmployee.Name;
             positionTextBox.Text = selectedEmployee.Position;
+            hourlyRateTextBox.Text = selectedEmployee.HourlyRate.ToString();
+            hoursWorkedTextBox.Text = selectedEmployee.HoursWorked.ToString();
+            bonusTextBox.Text = selectedEmployee.Bonus.ToString();
+            deductionsTextBox.Text = selectedEmployee.Deductions.ToString();
             formPanel.Visible = true;
         }
 
@@ -67,6 +76,10 @@ namespace RestaurantSalaries.Forms
         private void saveButton_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(nameTextBox.Text) ||
+                string.IsNullOrWhiteSpace(hourlyRateTextBox.Text) ||
+                string.IsNullOrWhiteSpace(hoursWorkedTextBox.Text) ||
+                string.IsNullOrWhiteSpace(bonusTextBox.Text) ||
+                string.IsNullOrWhiteSpace(deductionsTextBox.Text) ||
                 string.IsNullOrWhiteSpace(positionTextBox.Text))
             {
                 MessageBox.Show("Моля, попълнете всички полета.");
@@ -79,7 +92,11 @@ namespace RestaurantSalaries.Forms
                 Employee newEmployee = new Employee
                 {
                     Name = nameTextBox.Text,
-                    Position = positionTextBox.Text
+                    Position = positionTextBox.Text,
+                    HourlyRate = decimal.Parse(hourlyRateTextBox.Text),
+                    HoursWorked = int.Parse(hoursWorkedTextBox.Text),
+                    Bonus = decimal.Parse(bonusTextBox.Text),
+                    Deductions = decimal.Parse(deductionsTextBox.Text)
                 };
 
                 restaurantService.AddEmployee(newEmployee);
@@ -89,6 +106,10 @@ namespace RestaurantSalaries.Forms
                 // Редактиране на съществуващ служител
                 selectedEmployee.Name = nameTextBox.Text;
                 selectedEmployee.Position = positionTextBox.Text;
+                selectedEmployee.HourlyRate = decimal.Parse(hourlyRateTextBox.Text);
+                selectedEmployee.HoursWorked = int.Parse(hoursWorkedTextBox.Text);
+                selectedEmployee.Bonus = decimal.Parse(bonusTextBox.Text);
+                selectedEmployee.Deductions = decimal.Parse(deductionsTextBox.Text);
 
                 restaurantService.UpdateEmployee(selectedEmployee);
             }

@@ -67,8 +67,9 @@
             returnButton.Name = "returnButton";
             returnButton.Size = new Size(129, 68);
             returnButton.TabIndex = 2;
-            returnButton.Text = "button1";
+            returnButton.Text = "Назад";
             returnButton.UseVisualStyleBackColor = true;
+            returnButton.Click += returnButton_Click;
             // 
             // HomeForm
             // 
