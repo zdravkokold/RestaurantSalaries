@@ -56,7 +56,10 @@
             employeesGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             employeesGridView.Location = new Point(38, 14);
             employeesGridView.Name = "employeesGridView";
+            employeesGridView.ReadOnly = true;
             employeesGridView.RowHeadersWidth = 62;
+            employeesGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            employeesGridView.ShowEditingIcon = false;
             employeesGridView.Size = new Size(751, 217);
             employeesGridView.TabIndex = 0;
             // 

@@ -45,11 +45,18 @@ namespace RestaurantSalaries.Forms
             returnButton.Visible = false; 
             Label welcomeLabel = new Label
             {
-                Text = "Добре дошли в системата!",
+                Text = @"Добре дошли в системата!
+
+Нашето приложение улеснява управлението на вашия ресторант, като предлага:
+
+✅ Управление на служители – добавяне, редактиране и изтриване
+✅ Изчисляване на заплати – автоматично на база отработени часове и ставки
+✅ Справки и отчети – анализ на разходите и възнагражденията
+✅ Търсене и филтриране – бърз достъп до нужната информация",
+
                 AutoSize = true,
-                Font = new Font("Arial", 16, FontStyle.Bold),
-                Dock = DockStyle.Top,
-                TextAlign = ContentAlignment.MiddleCenter
+                Font = new Font("Arial", 11, FontStyle.Bold),
+                Dock = DockStyle.Top
             };
             mainPanel.Controls.Add(welcomeLabel);
         }

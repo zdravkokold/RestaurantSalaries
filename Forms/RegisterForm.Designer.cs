@@ -70,6 +70,7 @@
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(293, 31);
             txtPassword.TabIndex = 3;
+            txtPassword.UseSystemPasswordChar = true;
             // 
             // txtConfirmPassword
             // 
@@ -77,6 +78,7 @@
             txtConfirmPassword.Name = "txtConfirmPassword";
             txtConfirmPassword.Size = new Size(293, 31);
             txtConfirmPassword.TabIndex = 4;
+            txtConfirmPassword.UseSystemPasswordChar = true;
             // 
             // label1
             // 

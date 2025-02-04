@@ -58,7 +58,7 @@
             // 
             mainPanel.Location = new Point(161, 12);
             mainPanel.Name = "mainPanel";
-            mainPanel.Size = new Size(927, 566);
+            mainPanel.Size = new Size(927, 615);
             mainPanel.TabIndex = 2;
             // 
             // returnButton
@@ -67,7 +67,7 @@
             returnButton.Name = "returnButton";
             returnButton.Size = new Size(129, 68);
             returnButton.TabIndex = 2;
-            returnButton.Text = "Назад";
+            returnButton.Text = "Начало";
             returnButton.UseVisualStyleBackColor = true;
             returnButton.Click += returnButton_Click;
             // 
@@ -76,7 +76,7 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(1088, 579);
+            ClientSize = new Size(1088, 633);
             Controls.Add(returnButton);
             Controls.Add(mainPanel);
             Controls.Add(employeesBtn);
