@@ -82,9 +82,9 @@
    - Създайте нова база данни в SQL Server.  
    - В `Program.cs` задайте връзката към вашата база:  
      ```services.AddDbContext<RestaurantSalariesDbContext>(options =>
-        options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=RestaurantDB;Trusted_Connection=True;"));
+        options.UseSqlServer(@"Your ConnectionString Here;Database=RestaurantDB;Trusted_Connection=True;");
      ```
-   - Стартирайте командата за миграции:  
+   - Стартирайте командата за миграции в Package Manager Console:  
      ```bash
      Update-Database
      ```
