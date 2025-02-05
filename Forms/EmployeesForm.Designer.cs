@@ -224,7 +224,7 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(843, 600);
+            ClientSize = new Size(832, 600);
             Controls.Add(formPanel);
             Controls.Add(deleteButton);
             Controls.Add(editButton);
