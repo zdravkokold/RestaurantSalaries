@@ -8,8 +8,8 @@ namespace RestaurantSalaries.Data
         public RestaurantSalariesDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<RestaurantSalariesDbContext>();
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=RestaurantDB;Trusted_Connection=True;");
-    
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=RestaurantDB;Trusted_Connection=True;"); // Change conection strig here during SetUp
+
             return new RestaurantSalariesDbContext(optionsBuilder.Options);
         }
     }

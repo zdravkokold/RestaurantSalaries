@@ -141,6 +141,7 @@
             Controls.Add(txtUsername);
             Controls.Add(btnRegister);
             Name = "RegisterForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Регистрация";
             ResumeLayout(false);
             PerformLayout();

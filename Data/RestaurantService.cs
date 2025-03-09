@@ -111,5 +111,11 @@ namespace RestaurantSalaries.Data
                 .Where(s => s.DateSalaryRecieved >= startDate && s.DateSalaryRecieved <= endDate)
                 .Sum(s => s.TotalSalary);            
         }
+
+        public bool IsUserAdmin(string userId)
+        {
+            string adminRoleId = context.Roles.FirstOrDefault(r => r.Name == "Admin").Id;
+            return context.UserRoles.Any(ur => ur.UserId == userId && ur.RoleId == adminRoleId);
+        }
     }
 }

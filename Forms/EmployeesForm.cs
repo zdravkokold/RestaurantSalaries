@@ -18,9 +18,9 @@ namespace RestaurantSalaries.Forms
 
         private void LoadEmployees()
         {
-            employeesGridView.DataSource = restaurantService.GetAllEmployees().ToList();
+            employeesGridView.DataSource = restaurantService.GetAllEmployees();
             employeesGridView.Columns["Id"].Visible = false;
-            employeesGridView.Columns["Salaries"].Visible = false;
+            //employeesGridView.Columns["Salaries"].Visible = false;
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -116,6 +116,16 @@ namespace RestaurantSalaries.Forms
 
             formPanel.Visible = false;
             LoadEmployees();
+        }
+
+        private void filterButton_Click(object sender, EventArgs e)
+        {
+            string filter = filterTextBox.Text.ToLower();
+            var filteredData = restaurantService.GetAllEmployees()
+                .Where(emp => emp.Name.ToLower().Contains(filter) || emp.Position.ToLower().Contains(filter))
+                .ToList();
+
+            employeesGridView.DataSource = filteredData;
         }
     }
 }

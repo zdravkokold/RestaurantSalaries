@@ -58,7 +58,7 @@
             // 
             mainPanel.Location = new Point(161, 12);
             mainPanel.Name = "mainPanel";
-            mainPanel.Size = new Size(927, 615);
+            mainPanel.Size = new Size(927, 700);
             mainPanel.TabIndex = 2;
             // 
             // returnButton
@@ -76,12 +76,13 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(1088, 633);
+            ClientSize = new Size(1088, 654);
             Controls.Add(returnButton);
             Controls.Add(mainPanel);
             Controls.Add(employeesBtn);
             Controls.Add(calculatorBtn);
             Name = "HomeForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Система за управление на възнагражденията в ресторант";
             ResumeLayout(false);
         }

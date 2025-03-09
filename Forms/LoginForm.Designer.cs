@@ -112,6 +112,7 @@
             Controls.Add(txtUsername);
             Controls.Add(btnLogin);
             Name = "LoginForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Вход";
             ResumeLayout(false);
             PerformLayout();

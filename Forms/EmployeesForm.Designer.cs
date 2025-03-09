@@ -46,6 +46,9 @@
             nameLabel = new Label();
             positionTextBox = new TextBox();
             nameTextBox = new TextBox();
+            label6 = new Label();
+            filterButton = new Button();
+            filterTextBox = new TextBox();
             ((System.ComponentModel.ISupportInitialize)employeesGridView).BeginInit();
             formPanel.SuspendLayout();
             SuspendLayout();
@@ -54,7 +57,7 @@
             // 
             employeesGridView.AllowUserToOrderColumns = true;
             employeesGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            employeesGridView.Location = new Point(38, 14);
+            employeesGridView.Location = new Point(38, 70);
             employeesGridView.Name = "employeesGridView";
             employeesGridView.ReadOnly = true;
             employeesGridView.RowHeadersWidth = 62;
@@ -65,7 +68,7 @@
             // 
             // addButton
             // 
-            addButton.Location = new Point(218, 244);
+            addButton.Location = new Point(218, 302);
             addButton.Name = "addButton";
             addButton.Size = new Size(102, 34);
             addButton.TabIndex = 1;
@@ -75,7 +78,7 @@
             // 
             // editButton
             // 
-            editButton.Location = new Point(342, 244);
+            editButton.Location = new Point(342, 302);
             editButton.Name = "editButton";
             editButton.Size = new Size(136, 34);
             editButton.TabIndex = 2;
@@ -85,7 +88,7 @@
             // 
             // deleteButton
             // 
-            deleteButton.Location = new Point(501, 244);
+            deleteButton.Location = new Point(501, 302);
             deleteButton.Name = "deleteButton";
             deleteButton.Size = new Size(111, 34);
             deleteButton.TabIndex = 3;
@@ -108,7 +111,7 @@
             formPanel.Controls.Add(nameLabel);
             formPanel.Controls.Add(positionTextBox);
             formPanel.Controls.Add(nameTextBox);
-            formPanel.Location = new Point(38, 294);
+            formPanel.Location = new Point(38, 347);
             formPanel.Name = "formPanel";
             formPanel.Size = new Size(751, 286);
             formPanel.TabIndex = 4;
@@ -219,12 +222,41 @@
             nameTextBox.Size = new Size(172, 31);
             nameTextBox.TabIndex = 0;
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(38, 20);
+            label6.Name = "label6";
+            label6.Size = new Size(83, 25);
+            label6.TabIndex = 5;
+            label6.Text = "Търсене:";
+            // 
+            // filterButton
+            // 
+            filterButton.Location = new Point(656, 16);
+            filterButton.Name = "filterButton";
+            filterButton.Size = new Size(133, 34);
+            filterButton.TabIndex = 6;
+            filterButton.Text = "Филтриране";
+            filterButton.UseVisualStyleBackColor = true;
+            filterButton.Click += filterButton_Click;
+            // 
+            // filterTextBox
+            // 
+            filterTextBox.Location = new Point(126, 18);
+            filterTextBox.Name = "filterTextBox";
+            filterTextBox.Size = new Size(513, 31);
+            filterTextBox.TabIndex = 14;
+            // 
             // EmployeesForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(832, 600);
+            ClientSize = new Size(832, 644);
+            Controls.Add(filterTextBox);
+            Controls.Add(filterButton);
+            Controls.Add(label6);
             Controls.Add(formPanel);
             Controls.Add(deleteButton);
             Controls.Add(editButton);
@@ -236,6 +268,7 @@
             formPanel.ResumeLayout(false);
             formPanel.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -258,5 +291,8 @@
         private TextBox hourlyRateTextBox;
         private Label label5;
         private TextBox deductionsTextBox;
+        private Label label6;
+        private Button filterButton;
+        private TextBox filterTextBox;
     }
 }
