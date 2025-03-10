@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RestaurantSalaries.Data;
 
@@ -11,9 +12,11 @@ using RestaurantSalaries.Data;
 namespace RestaurantSalaries.Migrations
 {
     [DbContext(typeof(RestaurantSalariesDbContext))]
-    partial class RestaurantSalariesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250310094924_SalaryField")]
+    partial class SalaryField
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

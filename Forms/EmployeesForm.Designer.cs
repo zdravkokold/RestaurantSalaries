@@ -49,6 +49,7 @@
             label6 = new Label();
             filterButton = new Button();
             filterTextBox = new TextBox();
+            exportButton = new Button();
             ((System.ComponentModel.ISupportInitialize)employeesGridView).BeginInit();
             formPanel.SuspendLayout();
             SuspendLayout();
@@ -70,7 +71,7 @@
             // 
             addButton.Location = new Point(218, 302);
             addButton.Name = "addButton";
-            addButton.Size = new Size(102, 34);
+            addButton.Size = new Size(102, 39);
             addButton.TabIndex = 1;
             addButton.Text = "Добави";
             addButton.UseVisualStyleBackColor = true;
@@ -80,7 +81,7 @@
             // 
             editButton.Location = new Point(342, 302);
             editButton.Name = "editButton";
-            editButton.Size = new Size(136, 34);
+            editButton.Size = new Size(136, 39);
             editButton.TabIndex = 2;
             editButton.Text = "Редактирай";
             editButton.UseVisualStyleBackColor = true;
@@ -90,7 +91,7 @@
             // 
             deleteButton.Location = new Point(501, 302);
             deleteButton.Name = "deleteButton";
-            deleteButton.Size = new Size(111, 34);
+            deleteButton.Size = new Size(111, 39);
             deleteButton.TabIndex = 3;
             deleteButton.Text = "Изтрий";
             deleteButton.UseVisualStyleBackColor = true;
@@ -235,7 +236,7 @@
             // 
             filterButton.Location = new Point(656, 16);
             filterButton.Name = "filterButton";
-            filterButton.Size = new Size(133, 34);
+            filterButton.Size = new Size(133, 33);
             filterButton.TabIndex = 6;
             filterButton.Text = "Филтриране";
             filterButton.UseVisualStyleBackColor = true;
@@ -248,12 +249,24 @@
             filterTextBox.Size = new Size(513, 31);
             filterTextBox.TabIndex = 14;
             // 
+            // exportButton
+            // 
+            exportButton.BackColor = SystemColors.ScrollBar;
+            exportButton.Location = new Point(656, 302);
+            exportButton.Name = "exportButton";
+            exportButton.Size = new Size(133, 39);
+            exportButton.TabIndex = 15;
+            exportButton.Text = "Свали отчет";
+            exportButton.UseVisualStyleBackColor = false;
+            exportButton.Click += exportButton_Click;
+            // 
             // EmployeesForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(832, 644);
+            Controls.Add(exportButton);
             Controls.Add(filterTextBox);
             Controls.Add(filterButton);
             Controls.Add(label6);
@@ -294,5 +307,6 @@
         private Label label6;
         private Button filterButton;
         private TextBox filterTextBox;
+        private Button exportButton;
     }
 }

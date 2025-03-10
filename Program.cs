@@ -14,7 +14,7 @@ namespace RestaurantSalaries
         public static RoleManager<IdentityRole> RoleManager;
 
         [STAThread]
-        static async Task Main() // The starting point of the application
+        static void Main() // The starting point of the application
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -28,18 +28,16 @@ namespace RestaurantSalaries
                 .AddDefaultTokenProviders();
 
             services.AddLogging();
-            var serviceProvider = services.BuildServiceProvider();
-            var dbContext = serviceProvider.GetRequiredService<RestaurantSalariesDbContext>();
+            ServiceProvider serviceProvider = services.BuildServiceProvider();
+            RestaurantSalariesDbContext dbContext = serviceProvider.GetRequiredService<RestaurantSalariesDbContext>();
 
             UserManager = serviceProvider.GetRequiredService<UserManager<User>>();
             SignInManager = serviceProvider.GetRequiredService<SignInManager<User>>();
             RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-            await EnsureRolesExistAsync();
-            await SeedAdminUser(dbContext);
+            EnsureRolesExistAsync().GetAwaiter().GetResult();
+            SeedAdminUser(dbContext).GetAwaiter().GetResult();
 
-            ApplicationConfiguration.Initialize();
-            var restaurantService = new RestaurantService(dbContext);
             Application.Run(new LoginForm(dbContext));
         }
 

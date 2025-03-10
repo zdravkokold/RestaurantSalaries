@@ -1,4 +1,6 @@
-﻿using RestaurantSalaries.Data;
+﻿using System.Data;
+using ClosedXML.Excel;
+using RestaurantSalaries.Data;
 using RestaurantSalaries.Entities;
 
 namespace RestaurantSalaries.Forms
@@ -19,7 +21,7 @@ namespace RestaurantSalaries.Forms
         private void LoadEmployees()
         {
             employeesGridView.DataSource = restaurantService.GetAllEmployees();
-            employeesGridView.Columns["Id"].Visible = false;
+            employeesGridView.Columns["Id"].Width = 40;
             //employeesGridView.Columns["Salaries"].Visible = false;
         }
 
@@ -96,10 +98,29 @@ namespace RestaurantSalaries.Forms
                     HourlyRate = decimal.Parse(hourlyRateTextBox.Text),
                     HoursWorked = int.Parse(hoursWorkedTextBox.Text),
                     Bonus = decimal.Parse(bonusTextBox.Text),
-                    Deductions = decimal.Parse(deductionsTextBox.Text)
+                    Deductions = decimal.Parse(deductionsTextBox.Text),
+                    Salary = restaurantService
+                        .CalculateSalary(int.Parse(hoursWorkedTextBox.Text),
+                                         decimal.Parse(hourlyRateTextBox.Text),
+                                         decimal.Parse(bonusTextBox.Text),
+                                         decimal.Parse(deductionsTextBox.Text))
                 };
 
                 restaurantService.AddEmployee(newEmployee);
+
+                Salary salary = new Salary // Добавяне на заплата за новия служител
+                {
+                    Employee = newEmployee,
+                    EmployeeId = newEmployee.Id,
+                    HourlyRate = newEmployee.HourlyRate,
+                    HoursWorked = newEmployee.HoursWorked,
+                    BaseSalary = newEmployee.HourlyRate * newEmployee.HoursWorked,
+                    Bonus = newEmployee.Bonus,
+                    Deductions = newEmployee.Deductions,
+                    TotalSalary = newEmployee.Salary,
+                    DateSalaryRecieved = DateTime.Now
+                };
+                restaurantService.AddSalary(salary);
             }
             else
             {
@@ -110,22 +131,83 @@ namespace RestaurantSalaries.Forms
                 selectedEmployee.HoursWorked = int.Parse(hoursWorkedTextBox.Text);
                 selectedEmployee.Bonus = decimal.Parse(bonusTextBox.Text);
                 selectedEmployee.Deductions = decimal.Parse(deductionsTextBox.Text);
+                selectedEmployee.Salary = restaurantService
+                    .CalculateSalary(int.Parse(hoursWorkedTextBox.Text),
+                                     decimal.Parse(hourlyRateTextBox.Text),
+                                     decimal.Parse(bonusTextBox.Text),
+                                     decimal.Parse(deductionsTextBox.Text));
 
                 restaurantService.UpdateEmployee(selectedEmployee);
+
+                Salary salary = new Salary // Добавяне на редактирана заплата за редактирания служител
+                {
+                    Employee = selectedEmployee,
+                    EmployeeId = selectedEmployee.Id,
+                    HourlyRate = selectedEmployee.HourlyRate,
+                    HoursWorked = selectedEmployee.HoursWorked,
+                    BaseSalary = selectedEmployee.HourlyRate * selectedEmployee.HoursWorked,
+                    Bonus = selectedEmployee.Bonus,
+                    Deductions = selectedEmployee.Deductions,
+                    TotalSalary = selectedEmployee.Salary,
+                    DateSalaryRecieved = DateTime.Now
+                };
+                restaurantService.AddSalary(salary);
             }
 
             formPanel.Visible = false;
             LoadEmployees();
         }
 
-        private void filterButton_Click(object sender, EventArgs e)
+        private void filterButton_Click(object sender, EventArgs e) // Филтриране на данни по име или позиция
         {
             string filter = filterTextBox.Text.ToLower();
-            var filteredData = restaurantService.GetAllEmployees()
+
+            List<Employee> filteredData = restaurantService.GetAllEmployees()
                 .Where(emp => emp.Name.ToLower().Contains(filter) || emp.Position.ToLower().Contains(filter))
                 .ToList();
 
             employeesGridView.DataSource = filteredData;
+        }
+
+        private void exportButton_Click(object sender, EventArgs e) // Експорт на данни в Excel
+        {
+            using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "Excel Workbook|*.xlsx" })
+            {
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    DataTable dt = new DataTable();
+
+                    foreach (DataGridViewColumn column in employeesGridView.Columns)
+                    {
+                        if (column.Visible)
+                            dt.Columns.Add(column.HeaderText);
+                    }
+
+                    foreach (DataGridViewRow row in employeesGridView.Rows)
+                    {
+                        if (row.IsNewRow) continue;
+                        DataRow dr = dt.NewRow();
+
+                        for (int i = 0; i < employeesGridView.Columns.Count; i++)
+                        {
+                            if (employeesGridView.Columns[i].Visible)
+                            { 
+                                dr[i] = row.Cells[i].Value ?? string.Empty;                            
+                            }
+                        }
+
+                        dt.Rows.Add(dr);
+                    }
+
+                    using (XLWorkbook wb = new XLWorkbook())
+                    {
+                        wb.Worksheets.Add(dt, "Employees");
+                        wb.SaveAs(sfd.FileName);
+                    }
+
+                    MessageBox.Show("Export successful!");
+                }
+            }
         }
     }
 }

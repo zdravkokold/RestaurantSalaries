@@ -32,7 +32,8 @@ namespace RestaurantSalaries.Entities
         [DisplayName("Удръжки")]
         public decimal Deductions { get; set; }
 
-        [Column("Заплати")]
-        public ICollection<Salary> Salaries { get; set; }
+        [Column("Заплата")]
+        [DisplayName("Заплата")]
+        public decimal Salary { get; set; }
     }
 }
