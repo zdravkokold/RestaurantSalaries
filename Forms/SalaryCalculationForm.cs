@@ -1,4 +1,4 @@
-using RestaurantSalaries.Data;
+﻿using RestaurantSalaries.Data;
 
 namespace RestaurantSalaries
 {
@@ -22,6 +22,15 @@ namespace RestaurantSalaries
 
         private void calculateBtn_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(hoursWorkedTxt.Text) ||
+                string.IsNullOrWhiteSpace(hourlyRateTxt.Text) ||
+                string.IsNullOrWhiteSpace(bonusTxt.Text) ||
+                string.IsNullOrWhiteSpace(deductionsTxt.Text ))
+            {
+                MessageBox.Show("Моля, попълнете всички полета.");
+                return;
+            }
+
             int hoursWorked = int.Parse(hoursWorkedTxt.Text);
             decimal hourlyRate = decimal.Parse(hourlyRateTxt.Text);
             decimal bonus = decimal.Parse(bonusTxt.Text);

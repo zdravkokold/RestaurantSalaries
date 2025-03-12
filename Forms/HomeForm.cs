@@ -15,10 +15,10 @@ namespace RestaurantSalaries.Forms
 
         private void ShowFormInPanel(Form form)
         {
-            mainPanel.Controls.Clear();  
-            form.TopLevel = false;  
+            mainPanel.Controls.Clear();
+            form.TopLevel = false;
             form.FormBorderStyle = FormBorderStyle.None;
-            form.Dock = DockStyle.Fill;  
+            form.Dock = DockStyle.Fill;
             mainPanel.Controls.Add(form);
             form.Show();
             returnButton.Visible = true;
@@ -34,6 +34,11 @@ namespace RestaurantSalaries.Forms
             ShowFormInPanel(new SalaryCalculationForm(restaurantService));
         }
 
+        private void reportsBtn_Click(object sender, EventArgs e)
+        {
+            ShowFormInPanel(new ReportsForm(restaurantService));
+        }
+
         private void returnButton_Click(object sender, EventArgs e)
         {
             ShowHomeScreen();
@@ -42,7 +47,7 @@ namespace RestaurantSalaries.Forms
         private void ShowHomeScreen()
         {
             mainPanel.Controls.Clear();
-            returnButton.Visible = false; 
+            returnButton.Visible = false;
             Label welcomeLabel = new Label
             {
                 Text = @"Добре дошли в системата!
@@ -59,6 +64,6 @@ namespace RestaurantSalaries.Forms
                 Dock = DockStyle.Top
             };
             mainPanel.Controls.Add(welcomeLabel);
-        }
+        }        
     }
 }

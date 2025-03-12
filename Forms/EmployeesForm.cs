@@ -205,7 +205,7 @@ namespace RestaurantSalaries.Forms
                         wb.SaveAs(sfd.FileName);
                     }
 
-                    MessageBox.Show("Export successful!");
+                    MessageBox.Show("Експортирането бе успешно!");
                 }
             }
         }

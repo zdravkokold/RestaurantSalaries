@@ -143,6 +143,7 @@
             salaryTxt.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             salaryTxt.Location = new Point(209, 242);
             salaryTxt.Name = "salaryTxt";
+            salaryTxt.ReadOnly = true;
             salaryTxt.Size = new Size(143, 44);
             salaryTxt.TabIndex = 0;
             salaryTxt.Text = "";

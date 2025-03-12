@@ -236,7 +236,7 @@
             // 
             filterButton.Location = new Point(656, 16);
             filterButton.Name = "filterButton";
-            filterButton.Size = new Size(133, 33);
+            filterButton.Size = new Size(133, 39);
             filterButton.TabIndex = 6;
             filterButton.Text = "Филтриране";
             filterButton.UseVisualStyleBackColor = true;

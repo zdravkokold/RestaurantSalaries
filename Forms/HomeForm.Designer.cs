@@ -32,11 +32,12 @@
             employeesBtn = new Button();
             mainPanel = new Panel();
             returnButton = new Button();
+            reportsBtn = new Button();
             SuspendLayout();
             // 
             // calculatorBtn
             // 
-            calculatorBtn.Location = new Point(12, 22);
+            calculatorBtn.Location = new Point(12, 255);
             calculatorBtn.Name = "calculatorBtn";
             calculatorBtn.Size = new Size(129, 72);
             calculatorBtn.TabIndex = 0;
@@ -46,7 +47,7 @@
             // 
             // employeesBtn
             // 
-            employeesBtn.Location = new Point(12, 111);
+            employeesBtn.Location = new Point(12, 90);
             employeesBtn.Name = "employeesBtn";
             employeesBtn.Size = new Size(129, 72);
             employeesBtn.TabIndex = 1;
@@ -63,7 +64,7 @@
             // 
             // returnButton
             // 
-            returnButton.Location = new Point(12, 200);
+            returnButton.Location = new Point(12, 12);
             returnButton.Name = "returnButton";
             returnButton.Size = new Size(129, 68);
             returnButton.TabIndex = 2;
@@ -71,12 +72,23 @@
             returnButton.UseVisualStyleBackColor = true;
             returnButton.Click += returnButton_Click;
             // 
+            // reportsBtn
+            // 
+            reportsBtn.Location = new Point(12, 171);
+            reportsBtn.Name = "reportsBtn";
+            reportsBtn.Size = new Size(129, 72);
+            reportsBtn.TabIndex = 3;
+            reportsBtn.Text = "Справки и отчети";
+            reportsBtn.UseVisualStyleBackColor = true;
+            reportsBtn.Click += reportsBtn_Click;
+            // 
             // HomeForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(1088, 654);
+            Controls.Add(reportsBtn);
             Controls.Add(returnButton);
             Controls.Add(mainPanel);
             Controls.Add(employeesBtn);
@@ -93,5 +105,6 @@
         private Button employeesBtn;
         private Panel mainPanel;
         private Button returnButton;
+        private Button reportsBtn;
     }
 }
