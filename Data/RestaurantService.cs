@@ -49,44 +49,10 @@ namespace RestaurantSalaries.Data
 
         public List<Salary> GetAllSalaries() => context.Salaries.Include(s => s.Employee).ToList();
 
-        public List<Salary> GetSalariesByEmployeeId(int employeeId)
-        {
-            return context.Salaries.Where(s => s.EmployeeId == employeeId).ToList();
-        }
-
         public void UpdateSalary(Salary salary)
         {
             context.Salaries.Update(salary);
             context.SaveChanges();
-        }
-
-        public void DeleteSalary(int id)
-        {
-            Salary salary = context.Salaries.FirstOrDefault(s => s.Id == id);
-            if (salary != null)
-            {
-                context.Salaries.Remove(salary);
-                context.SaveChanges();
-            }
-        }
-
-        public Salary CalculateSalary(int? salaryId, int hoursWorked, decimal hourlyRate, decimal bonus, decimal deductions)
-        {            
-            Salary salary = context.Salaries.FirstOrDefault(e => e.Id == salaryId);
-            if (salary == null)
-            {
-                throw new Exception("Salary not found.");
-            }
-
-            decimal baseSalary = hourlyRate * hoursWorked;
-            decimal totalSalary = baseSalary + bonus - deductions;
-                        
-            salary.BaseSalary = baseSalary;
-            salary.Bonus = bonus;
-            salary.Deductions = deductions;
-            salary.TotalSalary = totalSalary;
-
-            return salary;           
         }
 
         public decimal CalculateSalary(int hoursWorked, decimal hourlyRate, decimal bonus, decimal deductions)
@@ -97,25 +63,12 @@ namespace RestaurantSalaries.Data
             return totalSalary;
         }
 
-        public List<Salary> GetSalariesForPeriod(DateTime startDate, DateTime endDate)
+        public Salary? GetSalaryByEmployeeAndMonth(int id, string currentMonthYear)
         {
-            return context.Salaries
-                .Include(s => s.Employee)
-                .Where(s => s.DateSalaryRecieved >= startDate && s.DateSalaryRecieved <= endDate)
-                .ToList();
-        }
-
-        public decimal GetTotalExpensesForPeriod(DateTime startDate, DateTime endDate)
-        {            
-            return context.Salaries
-                .Where(s => s.DateSalaryRecieved >= startDate && s.DateSalaryRecieved <= endDate)
-                .Sum(s => s.TotalSalary);            
-        }
-
-        public bool IsUserAdmin(string userId)
-        {
-            string adminRoleId = context.Roles.FirstOrDefault(r => r.Name == "Admin").Id;
-            return context.UserRoles.Any(ur => ur.UserId == userId && ur.RoleId == adminRoleId);
+            return context.Salaries.Include(s => s.Employee)
+                .Where(e => e.Employee.Id == id && e.SalaryMonth == currentMonthYear)
+                .ToList()
+                .FirstOrDefault();
         }
     }
 }

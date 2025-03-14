@@ -21,8 +21,7 @@ namespace RestaurantSalaries.Forms
         private void LoadEmployees()
         {
             employeesGridView.DataSource = restaurantService.GetAllEmployees();
-            employeesGridView.Columns["Id"].Width = 40;
-            //employeesGridView.Columns["Salaries"].Visible = false;
+            employeesGridView.Columns["Id"].Visible = false;
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -88,6 +87,8 @@ namespace RestaurantSalaries.Forms
                 return;
             }
 
+            string currentMonthYear = DateTime.Now.ToString("MM-yyyy");
+
             if (selectedEmployee == null)
             {
                 // Добавяне на нов служител
@@ -108,17 +109,20 @@ namespace RestaurantSalaries.Forms
 
                 restaurantService.AddEmployee(newEmployee);
 
-                Salary salary = new Salary // Добавяне на заплата за новия служител
+                Salary salary = new Salary
                 {
                     Employee = newEmployee,
                     EmployeeId = newEmployee.Id,
+                    Name = newEmployee.Name,
+                    Position = newEmployee.Position,
                     HourlyRate = newEmployee.HourlyRate,
                     HoursWorked = newEmployee.HoursWorked,
                     BaseSalary = newEmployee.HourlyRate * newEmployee.HoursWorked,
                     Bonus = newEmployee.Bonus,
                     Deductions = newEmployee.Deductions,
                     TotalSalary = newEmployee.Salary,
-                    DateSalaryRecieved = DateTime.Now
+                    SalaryDate = DateTime.Now,
+                    SalaryMonth = currentMonthYear
                 };
                 restaurantService.AddSalary(salary);
             }
@@ -139,24 +143,47 @@ namespace RestaurantSalaries.Forms
 
                 restaurantService.UpdateEmployee(selectedEmployee);
 
-                Salary salary = new Salary // Добавяне на редактирана заплата за редактирания служител
+                // Проверка за съществуваща заплата за конкретния месец
+                Salary? existingSalary = restaurantService.GetSalaryByEmployeeAndMonth(selectedEmployee.Id, currentMonthYear);
+
+                if (existingSalary != null)
                 {
-                    Employee = selectedEmployee,
-                    EmployeeId = selectedEmployee.Id,
-                    HourlyRate = selectedEmployee.HourlyRate,
-                    HoursWorked = selectedEmployee.HoursWorked,
-                    BaseSalary = selectedEmployee.HourlyRate * selectedEmployee.HoursWorked,
-                    Bonus = selectedEmployee.Bonus,
-                    Deductions = selectedEmployee.Deductions,
-                    TotalSalary = selectedEmployee.Salary,
-                    DateSalaryRecieved = DateTime.Now
-                };
-                restaurantService.AddSalary(salary);
+                    existingSalary.Name = selectedEmployee.Name;
+                    existingSalary.Position = selectedEmployee.Position;
+                    existingSalary.HourlyRate = selectedEmployee.HourlyRate;
+                    existingSalary.HoursWorked = selectedEmployee.HoursWorked;
+                    existingSalary.BaseSalary = selectedEmployee.HourlyRate * selectedEmployee.HoursWorked;
+                    existingSalary.Bonus = selectedEmployee.Bonus;
+                    existingSalary.Deductions = selectedEmployee.Deductions;
+                    existingSalary.TotalSalary = selectedEmployee.Salary;
+
+                    restaurantService.UpdateSalary(existingSalary);
+                }
+                else
+                {
+                    Salary newSalary = new Salary
+                    {
+                        Employee = selectedEmployee,
+                        EmployeeId = selectedEmployee.Id,
+                        Name = selectedEmployee.Name,
+                        Position = selectedEmployee.Position,
+                        HourlyRate = selectedEmployee.HourlyRate,
+                        HoursWorked = selectedEmployee.HoursWorked,
+                        BaseSalary = selectedEmployee.HourlyRate * selectedEmployee.HoursWorked,
+                        Bonus = selectedEmployee.Bonus,
+                        Deductions = selectedEmployee.Deductions,
+                        TotalSalary = selectedEmployee.Salary,
+                        SalaryDate = DateTime.Now,
+                        SalaryMonth = currentMonthYear
+                    };
+                    restaurantService.AddSalary(newSalary);
+                }
             }
 
             formPanel.Visible = false;
             LoadEmployees();
         }
+
 
         private void filterButton_Click(object sender, EventArgs e) // Филтриране на данни по име или позиция
         {
@@ -177,23 +204,24 @@ namespace RestaurantSalaries.Forms
                 {
                     DataTable dt = new DataTable();
 
-                    foreach (DataGridViewColumn column in employeesGridView.Columns)
+                    List<DataGridViewColumn> visibleColumns = employeesGridView.Columns.Cast<DataGridViewColumn>()
+                        .Where(c => c.Visible).ToList();
+
+                    foreach (var column in visibleColumns)
                     {
-                        if (column.Visible)
-                            dt.Columns.Add(column.HeaderText);
+                        dt.Columns.Add(column.HeaderText);
                     }
 
                     foreach (DataGridViewRow row in employeesGridView.Rows)
                     {
                         if (row.IsNewRow) continue;
-                        DataRow dr = dt.NewRow();
 
-                        for (int i = 0; i < employeesGridView.Columns.Count; i++)
+                        DataRow dr = dt.NewRow();
+                        int colIndex = 0;
+
+                        foreach (var column in visibleColumns)
                         {
-                            if (employeesGridView.Columns[i].Visible)
-                            { 
-                                dr[i] = row.Cells[i].Value ?? string.Empty;                            
-                            }
+                            dr[colIndex++] = row.Cells[column.Index].Value ?? string.Empty;
                         }
 
                         dt.Rows.Add(dr);
@@ -201,7 +229,9 @@ namespace RestaurantSalaries.Forms
 
                     using (XLWorkbook wb = new XLWorkbook())
                     {
-                        wb.Worksheets.Add(dt, "Employees");
+                        IXLWorksheet ws = wb.Worksheets.Add(dt, "Employees");
+                        ws.Columns().AdjustToContents();
+
                         wb.SaveAs(sfd.FileName);
                     }
 

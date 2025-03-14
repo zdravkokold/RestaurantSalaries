@@ -19,9 +19,9 @@ namespace RestaurantSalaries
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var services = new ServiceCollection();
+            ServiceCollection services = new ServiceCollection();
             services.AddDbContext<RestaurantSalariesDbContext>(options =>
-                options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=RestaurantDB;Trusted_Connection=True;")); // Change conection strig here during SetUp
+                options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=RestaurantDB;Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;")); // Change conection strig here during SetUp
 
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<RestaurantSalariesDbContext>()

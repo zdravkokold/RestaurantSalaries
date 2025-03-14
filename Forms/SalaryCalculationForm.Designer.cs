@@ -41,11 +41,13 @@
             hoursWorkedTxt = new TextBox();
             employeesDropdown = new ComboBox();
             salaryTxt = new RichTextBox();
+            label1 = new Label();
+            label2 = new Label();
             SuspendLayout();
             // 
             // hoursWorkedLabel
             // 
-            hoursWorkedLabel.Location = new Point(38, 130);
+            hoursWorkedLabel.Location = new Point(460, 248);
             hoursWorkedLabel.Name = "hoursWorkedLabel";
             hoursWorkedLabel.Size = new Size(177, 28);
             hoursWorkedLabel.TabIndex = 12;
@@ -53,7 +55,7 @@
             // 
             // hourlyRateLabel
             // 
-            hourlyRateLabel.Location = new Point(332, 23);
+            hourlyRateLabel.Location = new Point(237, 242);
             hourlyRateLabel.Name = "hourlyRateLabel";
             hourlyRateLabel.Size = new Size(145, 23);
             hourlyRateLabel.TabIndex = 11;
@@ -61,7 +63,7 @@
             // 
             // bonusLabel
             // 
-            bonusLabel.Location = new Point(252, 130);
+            bonusLabel.Location = new Point(237, 342);
             bonusLabel.Name = "bonusLabel";
             bonusLabel.Size = new Size(100, 23);
             bonusLabel.TabIndex = 10;
@@ -69,7 +71,7 @@
             // 
             // deductionsLabel
             // 
-            deductionsLabel.Location = new Point(386, 130);
+            deductionsLabel.Location = new Point(472, 342);
             deductionsLabel.Name = "deductionsLabel";
             deductionsLabel.Size = new Size(100, 23);
             deductionsLabel.TabIndex = 9;
@@ -78,7 +80,7 @@
             // salaryLabel
             // 
             salaryLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            salaryLabel.Location = new Point(92, 242);
+            salaryLabel.Location = new Point(245, 455);
             salaryLabel.Name = "salaryLabel";
             salaryLabel.Size = new Size(123, 47);
             salaryLabel.TabIndex = 8;
@@ -86,7 +88,7 @@
             // 
             // employeeLabel
             // 
-            employeeLabel.Location = new Point(38, 23);
+            employeeLabel.Location = new Point(237, 148);
             employeeLabel.Name = "employeeLabel";
             employeeLabel.Size = new Size(100, 23);
             employeeLabel.TabIndex = 7;
@@ -95,9 +97,9 @@
             // calculateBtn
             // 
             calculateBtn.BackColor = SystemColors.Control;
-            calculateBtn.Location = new Point(185, 337);
+            calculateBtn.Location = new Point(345, 545);
             calculateBtn.Name = "calculateBtn";
-            calculateBtn.Size = new Size(167, 63);
+            calculateBtn.Size = new Size(184, 63);
             calculateBtn.TabIndex = 6;
             calculateBtn.Text = "Изчисли";
             calculateBtn.UseVisualStyleBackColor = false;
@@ -105,55 +107,77 @@
             // 
             // hourlyRateTxt
             // 
-            hourlyRateTxt.Location = new Point(332, 60);
+            hourlyRateTxt.Location = new Point(237, 279);
             hourlyRateTxt.Name = "hourlyRateTxt";
-            hourlyRateTxt.Size = new Size(145, 31);
+            hourlyRateTxt.Size = new Size(182, 31);
             hourlyRateTxt.TabIndex = 5;
             // 
             // deductionsTxt
             // 
-            deductionsTxt.Location = new Point(377, 161);
+            deductionsTxt.Location = new Point(472, 373);
             deductionsTxt.Name = "deductionsTxt";
-            deductionsTxt.Size = new Size(100, 31);
+            deductionsTxt.Size = new Size(165, 31);
             deductionsTxt.TabIndex = 4;
             // 
             // bonusTxt
             // 
-            bonusTxt.Location = new Point(238, 161);
+            bonusTxt.Location = new Point(237, 373);
             bonusTxt.Name = "bonusTxt";
-            bonusTxt.Size = new Size(100, 31);
+            bonusTxt.Size = new Size(182, 31);
             bonusTxt.TabIndex = 3;
             // 
             // hoursWorkedTxt
             // 
-            hoursWorkedTxt.Location = new Point(38, 161);
+            hoursWorkedTxt.Location = new Point(472, 279);
             hoursWorkedTxt.Name = "hoursWorkedTxt";
             hoursWorkedTxt.Size = new Size(165, 31);
             hoursWorkedTxt.TabIndex = 2;
             // 
             // employeesDropdown
             // 
-            employeesDropdown.Location = new Point(38, 58);
+            employeesDropdown.Location = new Point(237, 183);
             employeesDropdown.Name = "employeesDropdown";
-            employeesDropdown.Size = new Size(261, 33);
+            employeesDropdown.Size = new Size(400, 33);
             employeesDropdown.TabIndex = 1;
             // 
             // salaryTxt
             // 
             salaryTxt.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            salaryTxt.Location = new Point(209, 242);
+            salaryTxt.Location = new Point(362, 455);
             salaryTxt.Name = "salaryTxt";
             salaryTxt.ReadOnly = true;
             salaryTxt.Size = new Size(143, 44);
             salaryTxt.TabIndex = 0;
             salaryTxt.Text = "";
             // 
+            // label1
+            // 
+            label1.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(79, 29);
+            label1.Name = "label1";
+            label1.Size = new Size(688, 62);
+            label1.TabIndex = 13;
+            label1.Text = "Калкулатор за изчисляване на заплати";
+            label1.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // label2
+            // 
+            label2.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(113, 82);
+            label2.Name = "label2";
+            label2.Size = new Size(625, 43);
+            label2.TabIndex = 14;
+            label2.Text = "(служи само за прогнозно изчисление и не променя заплатата)";
+            label2.TextAlign = ContentAlignment.TopCenter;
+            // 
             // SalaryCalculationForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(548, 450);
+            ClientSize = new Size(832, 644);
+            Controls.Add(label2);
+            Controls.Add(label1);
             Controls.Add(salaryTxt);
             Controls.Add(employeesDropdown);
             Controls.Add(hoursWorkedTxt);
@@ -189,5 +213,7 @@
         private TextBox hoursWorkedTxt;
         private ComboBox employeesDropdown;
         private RichTextBox salaryTxt;
+        private Label label1;
+        private Label label2;
     }
 }
