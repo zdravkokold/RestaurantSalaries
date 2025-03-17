@@ -34,12 +34,11 @@
             label1 = new Label();
             Парола = new Label();
             lblError = new Label();
-            btnRegister = new Button();
             SuspendLayout();
             // 
             // btnLogin
             // 
-            btnLogin.Location = new Point(66, 264);
+            btnLogin.Location = new Point(167, 262);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(120, 46);
             btnLogin.TabIndex = 0;
@@ -88,23 +87,12 @@
             lblError.Size = new Size(0, 25);
             lblError.TabIndex = 5;
             // 
-            // btnRegister
-            // 
-            btnRegister.Location = new Point(281, 264);
-            btnRegister.Name = "btnRegister";
-            btnRegister.Size = new Size(135, 46);
-            btnRegister.TabIndex = 6;
-            btnRegister.Text = "Регистрация";
-            btnRegister.UseVisualStyleBackColor = true;
-            btnRegister.Click += btnRegister_Click;
-            // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(488, 331);
-            Controls.Add(btnRegister);
             Controls.Add(lblError);
             Controls.Add(Парола);
             Controls.Add(label1);
@@ -126,6 +114,5 @@
         private Label label1;
         private Label Парола;
         private Label lblError;
-        private Button btnRegister;
     }
 }

@@ -68,6 +68,7 @@ namespace RestaurantSalaries
                 {
                     UserName = adminUserName,
                     Email = adminEmail,
+                    Role = "Admin",
                     PasswordHash = hashedPassword
                 };
 

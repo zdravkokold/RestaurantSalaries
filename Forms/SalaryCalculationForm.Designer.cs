@@ -47,7 +47,7 @@
             // 
             // hoursWorkedLabel
             // 
-            hoursWorkedLabel.Location = new Point(460, 248);
+            hoursWorkedLabel.Location = new Point(437, 248);
             hoursWorkedLabel.Name = "hoursWorkedLabel";
             hoursWorkedLabel.Size = new Size(177, 28);
             hoursWorkedLabel.TabIndex = 12;
@@ -55,7 +55,7 @@
             // 
             // hourlyRateLabel
             // 
-            hourlyRateLabel.Location = new Point(237, 242);
+            hourlyRateLabel.Location = new Point(214, 242);
             hourlyRateLabel.Name = "hourlyRateLabel";
             hourlyRateLabel.Size = new Size(145, 23);
             hourlyRateLabel.TabIndex = 11;
@@ -63,7 +63,7 @@
             // 
             // bonusLabel
             // 
-            bonusLabel.Location = new Point(237, 342);
+            bonusLabel.Location = new Point(214, 342);
             bonusLabel.Name = "bonusLabel";
             bonusLabel.Size = new Size(100, 23);
             bonusLabel.TabIndex = 10;
@@ -71,7 +71,7 @@
             // 
             // deductionsLabel
             // 
-            deductionsLabel.Location = new Point(472, 342);
+            deductionsLabel.Location = new Point(449, 342);
             deductionsLabel.Name = "deductionsLabel";
             deductionsLabel.Size = new Size(100, 23);
             deductionsLabel.TabIndex = 9;
@@ -80,7 +80,7 @@
             // salaryLabel
             // 
             salaryLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            salaryLabel.Location = new Point(245, 455);
+            salaryLabel.Location = new Point(222, 455);
             salaryLabel.Name = "salaryLabel";
             salaryLabel.Size = new Size(123, 47);
             salaryLabel.TabIndex = 8;
@@ -88,7 +88,7 @@
             // 
             // employeeLabel
             // 
-            employeeLabel.Location = new Point(237, 148);
+            employeeLabel.Location = new Point(214, 148);
             employeeLabel.Name = "employeeLabel";
             employeeLabel.Size = new Size(100, 23);
             employeeLabel.TabIndex = 7;
@@ -97,7 +97,7 @@
             // calculateBtn
             // 
             calculateBtn.BackColor = SystemColors.Control;
-            calculateBtn.Location = new Point(345, 545);
+            calculateBtn.Location = new Point(322, 545);
             calculateBtn.Name = "calculateBtn";
             calculateBtn.Size = new Size(184, 63);
             calculateBtn.TabIndex = 6;
@@ -107,35 +107,35 @@
             // 
             // hourlyRateTxt
             // 
-            hourlyRateTxt.Location = new Point(237, 279);
+            hourlyRateTxt.Location = new Point(214, 279);
             hourlyRateTxt.Name = "hourlyRateTxt";
             hourlyRateTxt.Size = new Size(182, 31);
             hourlyRateTxt.TabIndex = 5;
             // 
             // deductionsTxt
             // 
-            deductionsTxt.Location = new Point(472, 373);
+            deductionsTxt.Location = new Point(449, 373);
             deductionsTxt.Name = "deductionsTxt";
             deductionsTxt.Size = new Size(165, 31);
             deductionsTxt.TabIndex = 4;
             // 
             // bonusTxt
             // 
-            bonusTxt.Location = new Point(237, 373);
+            bonusTxt.Location = new Point(214, 373);
             bonusTxt.Name = "bonusTxt";
             bonusTxt.Size = new Size(182, 31);
             bonusTxt.TabIndex = 3;
             // 
             // hoursWorkedTxt
             // 
-            hoursWorkedTxt.Location = new Point(472, 279);
+            hoursWorkedTxt.Location = new Point(449, 279);
             hoursWorkedTxt.Name = "hoursWorkedTxt";
             hoursWorkedTxt.Size = new Size(165, 31);
             hoursWorkedTxt.TabIndex = 2;
             // 
             // employeesDropdown
             // 
-            employeesDropdown.Location = new Point(237, 183);
+            employeesDropdown.Location = new Point(214, 183);
             employeesDropdown.Name = "employeesDropdown";
             employeesDropdown.Size = new Size(400, 33);
             employeesDropdown.TabIndex = 1;
@@ -143,17 +143,17 @@
             // salaryTxt
             // 
             salaryTxt.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            salaryTxt.Location = new Point(362, 455);
+            salaryTxt.Location = new Point(339, 455);
             salaryTxt.Name = "salaryTxt";
             salaryTxt.ReadOnly = true;
-            salaryTxt.Size = new Size(143, 44);
+            salaryTxt.Size = new Size(167, 44);
             salaryTxt.TabIndex = 0;
             salaryTxt.Text = "";
             // 
             // label1
             // 
             label1.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(79, 29);
+            label1.Location = new Point(66, 29);
             label1.Name = "label1";
             label1.Size = new Size(688, 62);
             label1.TabIndex = 13;
@@ -163,7 +163,7 @@
             // label2
             // 
             label2.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(113, 82);
+            label2.Location = new Point(100, 82);
             label2.Name = "label2";
             label2.Size = new Size(625, 43);
             label2.TabIndex = 14;

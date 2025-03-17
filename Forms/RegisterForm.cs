@@ -5,12 +5,13 @@ namespace RestaurantSalaries.Forms
 {
     public partial class RegisterForm : Form
     {
+        private readonly RestaurantService restaurantService;
         private readonly RestaurantSalariesDbContext context;
-
-        public RegisterForm(RestaurantSalariesDbContext context)
+        public RegisterForm(RestaurantSalariesDbContext context, RestaurantService restaurantService)
         {
             InitializeComponent();
             this.context = context;
+            this.restaurantService = restaurantService;
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
@@ -48,7 +49,8 @@ namespace RestaurantSalaries.Forms
             {
                 UserName = username,
                 Email = email,
-                PasswordHash = hashedPassword,
+                Role = "Employee",
+                PasswordHash = hashedPassword
             };
 
             context.Users.Add(newUser);
@@ -57,8 +59,8 @@ namespace RestaurantSalaries.Forms
             MessageBox.Show("Регистрацията е успешна!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             this.Hide();
-            LoginForm loginForm = new LoginForm(context);
-            loginForm.Show();
+            HomeForm homeForm = new HomeForm(restaurantService, context);
+            homeForm.Show();
         }
     }
 }

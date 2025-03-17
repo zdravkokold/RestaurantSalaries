@@ -5,11 +5,13 @@ namespace RestaurantSalaries.Forms
     public partial class HomeForm : Form
     {
         private readonly RestaurantService restaurantService;
+        private readonly RestaurantSalariesDbContext context;
 
-        public HomeForm(RestaurantService restaurantService)
+        public HomeForm(RestaurantService restaurantService, RestaurantSalariesDbContext context)
         {
             InitializeComponent();
             this.restaurantService = restaurantService;
+            this.context = context;
             ShowHomeScreen();
         }
 
@@ -50,7 +52,10 @@ namespace RestaurantSalaries.Forms
             returnButton.Visible = false;
             Label welcomeLabel = new Label
             {
-                Text = @"Добре дошли в системата!
+                Text = @"
+
+
+Добре дошли в системата!
 
 Нашето приложение улеснява управлението на вашия ресторант, като предлага:
 
@@ -64,6 +69,13 @@ namespace RestaurantSalaries.Forms
                 Dock = DockStyle.Top
             };
             mainPanel.Controls.Add(welcomeLabel);
-        }        
+        }
+
+        private void regiterEmployeesBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            RegisterForm registerForm = new RegisterForm(context, restaurantService);
+            registerForm.Show();
+        }     
     }
 }

@@ -33,6 +33,7 @@
             mainPanel = new Panel();
             returnButton = new Button();
             reportsBtn = new Button();
+            regiterEmployeesBtn = new Button();
             SuspendLayout();
             // 
             // calculatorBtn
@@ -82,12 +83,23 @@
             reportsBtn.UseVisualStyleBackColor = true;
             reportsBtn.Click += reportsBtn_Click;
             // 
+            // regiterEmployeesBtn
+            // 
+            regiterEmployeesBtn.Location = new Point(12, 344);
+            regiterEmployeesBtn.Name = "regiterEmployeesBtn";
+            regiterEmployeesBtn.Size = new Size(129, 72);
+            regiterEmployeesBtn.TabIndex = 4;
+            regiterEmployeesBtn.Text = "Регистрирай служители";
+            regiterEmployeesBtn.UseVisualStyleBackColor = true;
+            regiterEmployeesBtn.Click += regiterEmployeesBtn_Click;
+            // 
             // HomeForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(1088, 654);
+            Controls.Add(regiterEmployeesBtn);
             Controls.Add(reportsBtn);
             Controls.Add(returnButton);
             Controls.Add(mainPanel);
@@ -106,5 +118,6 @@
         private Panel mainPanel;
         private Button returnButton;
         private Button reportsBtn;
+        private Button regiterEmployeesBtn;
     }
 }

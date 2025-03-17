@@ -1,11 +1,13 @@
 ﻿using RestaurantSalaries.Data;
+using RestaurantSalaries.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace RestaurantSalaries.Forms
 {
     public partial class LoginForm : Form
     {
         private readonly RestaurantSalariesDbContext context;
-        private readonly RestaurantService restaurantService;
+        private readonly RestaurantService restaurantService;        
 
         public LoginForm(RestaurantSalariesDbContext context)
         {
@@ -36,15 +38,8 @@ namespace RestaurantSalaries.Forms
             }
 
             this.Hide();
-            HomeForm homeForm = new HomeForm(restaurantService);
+            HomeForm homeForm = new HomeForm(restaurantService, context);
             homeForm.Show();
-        }
-
-        private void btnRegister_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            RegisterForm registerForm = new RegisterForm(context);
-            registerForm.Show();
         }
     }
 }
