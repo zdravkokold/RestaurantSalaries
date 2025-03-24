@@ -1,6 +1,4 @@
 ﻿using RestaurantSalaries.Data;
-using RestaurantSalaries.Entities;
-using Microsoft.AspNetCore.Identity;
 
 namespace RestaurantSalaries.Forms
 {

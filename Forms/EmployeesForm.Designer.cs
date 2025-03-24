@@ -33,6 +33,8 @@
             editButton = new Button();
             deleteButton = new Button();
             formPanel = new Panel();
+            hrsTodayLabel = new Label();
+            hrsWorkedToday = new TextBox();
             label5 = new Label();
             deductionsTextBox = new TextBox();
             label4 = new Label();
@@ -57,6 +59,8 @@
             // employeesGridView
             // 
             employeesGridView.AllowUserToOrderColumns = true;
+            employeesGridView.BackgroundColor = SystemColors.ActiveCaption;
+            employeesGridView.BorderStyle = BorderStyle.None;
             employeesGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             employeesGridView.Location = new Point(38, 70);
             employeesGridView.Name = "employeesGridView";
@@ -99,6 +103,8 @@
             // 
             // formPanel
             // 
+            formPanel.Controls.Add(hrsTodayLabel);
+            formPanel.Controls.Add(hrsWorkedToday);
             formPanel.Controls.Add(label5);
             formPanel.Controls.Add(deductionsTextBox);
             formPanel.Controls.Add(label4);
@@ -117,10 +123,26 @@
             formPanel.Size = new Size(751, 286);
             formPanel.TabIndex = 4;
             // 
+            // hrsTodayLabel
+            // 
+            hrsTodayLabel.AutoSize = true;
+            hrsTodayLabel.Location = new Point(88, 187);
+            hrsTodayLabel.Name = "hrsTodayLabel";
+            hrsTodayLabel.Size = new Size(152, 25);
+            hrsTodayLabel.TabIndex = 15;
+            hrsTodayLabel.Text = "Отработени днес";
+            // 
+            // hrsWorkedToday
+            // 
+            hrsWorkedToday.Location = new Point(88, 215);
+            hrsWorkedToday.Name = "hrsWorkedToday";
+            hrsWorkedToday.Size = new Size(172, 31);
+            hrsWorkedToday.TabIndex = 14;
+            // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(483, 127);
+            label5.Location = new Point(483, 104);
             label5.Name = "label5";
             label5.Size = new Size(86, 25);
             label5.TabIndex = 13;
@@ -128,7 +150,7 @@
             // 
             // deductionsTextBox
             // 
-            deductionsTextBox.Location = new Point(483, 155);
+            deductionsTextBox.Location = new Point(483, 132);
             deductionsTextBox.Name = "deductionsTextBox";
             deductionsTextBox.Size = new Size(150, 31);
             deductionsTextBox.TabIndex = 12;
@@ -136,7 +158,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(302, 127);
+            label4.Location = new Point(302, 104);
             label4.Name = "label4";
             label4.Size = new Size(60, 25);
             label4.TabIndex = 11;
@@ -144,7 +166,7 @@
             // 
             // bonusTextBox
             // 
-            bonusTextBox.Location = new Point(302, 155);
+            bonusTextBox.Location = new Point(302, 132);
             bonusTextBox.Name = "bonusTextBox";
             bonusTextBox.Size = new Size(139, 31);
             bonusTextBox.TabIndex = 10;
@@ -152,7 +174,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(88, 127);
+            label3.Location = new Point(88, 104);
             label3.Name = "label3";
             label3.Size = new Size(172, 25);
             label3.TabIndex = 9;
@@ -160,7 +182,7 @@
             // 
             // hoursWorkedTextBox
             // 
-            hoursWorkedTextBox.Location = new Point(88, 155);
+            hoursWorkedTextBox.Location = new Point(88, 132);
             hoursWorkedTextBox.Name = "hoursWorkedTextBox";
             hoursWorkedTextBox.Size = new Size(172, 31);
             hoursWorkedTextBox.TabIndex = 8;
@@ -183,7 +205,7 @@
             // 
             // saveButton
             // 
-            saveButton.Location = new Point(312, 226);
+            saveButton.Location = new Point(312, 213);
             saveButton.Name = "saveButton";
             saveButton.Size = new Size(121, 44);
             saveButton.TabIndex = 5;
@@ -276,6 +298,7 @@
             Controls.Add(addButton);
             Controls.Add(employeesGridView);
             Name = "EmployeesForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Служители";
             ((System.ComponentModel.ISupportInitialize)employeesGridView).EndInit();
             formPanel.ResumeLayout(false);
@@ -308,5 +331,7 @@
         private Button filterButton;
         private TextBox filterTextBox;
         private Button exportButton;
+        private Label hrsTodayLabel;
+        private TextBox hrsWorkedToday;
     }
 }

@@ -46,6 +46,8 @@
             // salariesGridView
             // 
             salariesGridView.AllowUserToOrderColumns = true;
+            salariesGridView.BackgroundColor = SystemColors.ActiveCaption;
+            salariesGridView.BorderStyle = BorderStyle.None;
             salariesGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             salariesGridView.Location = new Point(40, 204);
             salariesGridView.Name = "salariesGridView";

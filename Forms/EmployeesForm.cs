@@ -34,6 +34,9 @@ namespace RestaurantSalaries.Forms
             bonusTextBox.Text = "";
             deductionsTextBox.Text = "";
             formPanel.Visible = true;
+
+            hrsWorkedToday.Visible = false;
+            hrsTodayLabel.Visible = false;
         }
 
         private void editButton_Click(object sender, EventArgs e)
@@ -46,6 +49,9 @@ namespace RestaurantSalaries.Forms
 
             int employeeId = (int)employeesGridView.SelectedRows[0].Cells["Id"].Value;
             selectedEmployee = restaurantService.GetEmployeeById(employeeId);
+
+            hrsWorkedToday.Visible = true;
+            hrsTodayLabel.Visible = true;
 
             nameTextBox.Text = selectedEmployee.Name;
             positionTextBox.Text = selectedEmployee.Position;
@@ -83,6 +89,9 @@ namespace RestaurantSalaries.Forms
                 string.IsNullOrWhiteSpace(deductionsTextBox.Text) ||
                 string.IsNullOrWhiteSpace(positionTextBox.Text))
             {
+                hrsWorkedToday.Visible = false;
+                hrsTodayLabel.Visible = false;
+
                 MessageBox.Show("Моля, попълнете всички полета.");
                 return;
             }
@@ -91,6 +100,9 @@ namespace RestaurantSalaries.Forms
 
             if (selectedEmployee == null)
             {
+                hrsWorkedToday.Visible = false;
+                hrsTodayLabel.Visible = false;
+
                 // Добавяне на нов служител
                 Employee newEmployee = new Employee
                 {
@@ -105,7 +117,7 @@ namespace RestaurantSalaries.Forms
                                          decimal.Parse(hourlyRateTextBox.Text),
                                          decimal.Parse(bonusTextBox.Text),
                                          decimal.Parse(deductionsTextBox.Text))
-                };
+                };                
 
                 restaurantService.AddEmployee(newEmployee);
 
@@ -124,22 +136,31 @@ namespace RestaurantSalaries.Forms
                     SalaryDate = DateTime.Now,
                     SalaryMonth = currentMonthYear
                 };
+
                 restaurantService.AddSalary(salary);
             }
             else
             {
+                hrsWorkedToday.Visible = true;
+                hrsTodayLabel.Visible = true;
+
                 // Редактиране на съществуващ служител
                 selectedEmployee.Name = nameTextBox.Text;
                 selectedEmployee.Position = positionTextBox.Text;
                 selectedEmployee.HourlyRate = decimal.Parse(hourlyRateTextBox.Text);
                 selectedEmployee.HoursWorked = int.Parse(hoursWorkedTextBox.Text);
+
+                selectedEmployee.HoursWorked += int.Parse(hrsWorkedToday.Text);
+                hrsWorkedToday.Text = "";
+
                 selectedEmployee.Bonus = decimal.Parse(bonusTextBox.Text);
                 selectedEmployee.Deductions = decimal.Parse(deductionsTextBox.Text);
+
                 selectedEmployee.Salary = restaurantService
-                    .CalculateSalary(int.Parse(hoursWorkedTextBox.Text),
-                                     decimal.Parse(hourlyRateTextBox.Text),
-                                     decimal.Parse(bonusTextBox.Text),
-                                     decimal.Parse(deductionsTextBox.Text));
+                    .CalculateSalary(selectedEmployee.HoursWorked,
+                                     selectedEmployee.HourlyRate,
+                                     selectedEmployee.Bonus,
+                                     selectedEmployee.Deductions);                         
 
                 restaurantService.UpdateEmployee(selectedEmployee);
 

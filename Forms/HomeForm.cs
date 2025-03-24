@@ -69,6 +69,7 @@ namespace RestaurantSalaries.Forms
                 Dock = DockStyle.Top
             };
             mainPanel.Controls.Add(welcomeLabel);
+            mainPanel.Controls.Add(pictureBox2);
         }
 
         private void regiterEmployeesBtn_Click(object sender, EventArgs e)

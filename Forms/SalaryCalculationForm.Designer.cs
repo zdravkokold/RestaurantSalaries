@@ -43,6 +43,8 @@
             salaryTxt = new RichTextBox();
             label1 = new Label();
             label2 = new Label();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // hoursWorkedLabel
@@ -170,12 +172,23 @@
             label2.Text = "(служи само за прогнозно изчисление и не променя заплатата)";
             label2.TextAlign = ContentAlignment.TopCenter;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.calculator;
+            pictureBox1.Location = new Point(30, 148);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(128, 138);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 15;
+            pictureBox1.TabStop = false;
+            // 
             // SalaryCalculationForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(832, 644);
+            Controls.Add(pictureBox1);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(salaryTxt);
@@ -194,6 +207,7 @@
             Name = "SalaryCalculationForm";
             Text = "Изчисляване на заплата";
             Load += SalaryCalculationForm_Load;
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -215,5 +229,6 @@
         private RichTextBox salaryTxt;
         private Label label1;
         private Label label2;
+        private PictureBox pictureBox1;
     }
 }

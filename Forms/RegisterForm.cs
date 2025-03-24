@@ -7,6 +7,7 @@ namespace RestaurantSalaries.Forms
     {
         private readonly RestaurantService restaurantService;
         private readonly RestaurantSalariesDbContext context;
+
         public RegisterForm(RestaurantSalariesDbContext context, RestaurantService restaurantService)
         {
             InitializeComponent();
