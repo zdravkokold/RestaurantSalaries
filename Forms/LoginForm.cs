@@ -35,6 +35,11 @@ namespace RestaurantSalaries.Forms
                 return;
             }
 
+            string adminRoleId = context.Roles.FirstOrDefault(r => r.Name == "Admin")?.Id;
+
+            Session.CurrentUser = user;
+            Session.UserRole = context.UserRoles.FirstOrDefault(ur => ur.UserId == user.Id && ur.RoleId == adminRoleId) != null ? "Admin" : "Employee";
+
             this.Hide();
             HomeForm homeForm = new HomeForm(restaurantService, context);
             homeForm.Show();

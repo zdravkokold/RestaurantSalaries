@@ -13,6 +13,7 @@ namespace RestaurantSalaries.Forms
             this.restaurantService = restaurantService;
             this.context = context;
             ShowHomeScreen();
+            HideAdminButtonsIfRoleIsNotAdmin();
         }
 
         private void ShowFormInPanel(Form form)
@@ -77,6 +78,24 @@ namespace RestaurantSalaries.Forms
             this.Hide();
             RegisterForm registerForm = new RegisterForm(context, restaurantService);
             registerForm.Show();
-        }     
+        }
+
+        private void HideAdminButtonsIfRoleIsNotAdmin()
+        {
+            if (Session.UserRole != "Admin")
+            {
+                employeesBtn.Visible = false;
+                regiterEmployeesBtn.Visible = false;
+                reportsBtn.Visible = false;
+            }
+        }
+
+        private void logOutBtn_Click(object sender, EventArgs e)
+        {
+            var loginForm = new LoginForm(context);
+            loginForm.Show();
+
+            this.Close();
+        }
     }
 }

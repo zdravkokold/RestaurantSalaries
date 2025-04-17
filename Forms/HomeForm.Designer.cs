@@ -31,6 +31,7 @@
             calculatorBtn = new Button();
             employeesBtn = new Button();
             mainPanel = new Panel();
+            logOutBtn = new Button();
             pictureBox2 = new PictureBox();
             returnButton = new Button();
             reportsBtn = new Button();
@@ -43,7 +44,7 @@
             // 
             // calculatorBtn
             // 
-            calculatorBtn.Location = new Point(12, 400);
+            calculatorBtn.Location = new Point(12, 232);
             calculatorBtn.Name = "calculatorBtn";
             calculatorBtn.Size = new Size(129, 72);
             calculatorBtn.TabIndex = 0;
@@ -53,7 +54,7 @@
             // 
             // employeesBtn
             // 
-            employeesBtn.Location = new Point(12, 235);
+            employeesBtn.Location = new Point(12, 313);
             employeesBtn.Name = "employeesBtn";
             employeesBtn.Size = new Size(129, 72);
             employeesBtn.TabIndex = 1;
@@ -68,6 +69,16 @@
             mainPanel.Name = "mainPanel";
             mainPanel.Size = new Size(927, 700);
             mainPanel.TabIndex = 2;
+            // 
+            // logOutBtn
+            // 
+            logOutBtn.Location = new Point(12, 606);
+            logOutBtn.Name = "logOutBtn";
+            logOutBtn.Size = new Size(129, 39);
+            logOutBtn.TabIndex = 8;
+            logOutBtn.Text = "Изход";
+            logOutBtn.UseVisualStyleBackColor = true;
+            logOutBtn.Click += logOutBtn_Click;
             // 
             // pictureBox2
             // 
@@ -91,7 +102,7 @@
             // 
             // reportsBtn
             // 
-            reportsBtn.Location = new Point(12, 316);
+            reportsBtn.Location = new Point(12, 395);
             reportsBtn.Name = "reportsBtn";
             reportsBtn.Size = new Size(129, 72);
             reportsBtn.TabIndex = 3;
@@ -101,7 +112,7 @@
             // 
             // regiterEmployeesBtn
             // 
-            regiterEmployeesBtn.Location = new Point(12, 484);
+            regiterEmployeesBtn.Location = new Point(12, 477);
             regiterEmployeesBtn.Name = "regiterEmployeesBtn";
             regiterEmployeesBtn.Size = new Size(129, 72);
             regiterEmployeesBtn.TabIndex = 4;
@@ -125,6 +136,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(1088, 654);
+            Controls.Add(logOutBtn);
             Controls.Add(pictureBox1);
             Controls.Add(regiterEmployeesBtn);
             Controls.Add(reportsBtn);
@@ -151,5 +163,6 @@
         private Button regiterEmployeesBtn;
         private PictureBox pictureBox2;
         private PictureBox pictureBox1;
+        private Button logOutBtn;
     }
 }

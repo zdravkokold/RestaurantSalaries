@@ -117,7 +117,7 @@ namespace RestaurantSalaries.Forms
                                          decimal.Parse(hourlyRateTextBox.Text),
                                          decimal.Parse(bonusTextBox.Text),
                                          decimal.Parse(deductionsTextBox.Text))
-                };                
+                };
 
                 restaurantService.AddEmployee(newEmployee);
 
@@ -150,8 +150,11 @@ namespace RestaurantSalaries.Forms
                 selectedEmployee.HourlyRate = decimal.Parse(hourlyRateTextBox.Text);
                 selectedEmployee.HoursWorked = int.Parse(hoursWorkedTextBox.Text);
 
-                selectedEmployee.HoursWorked += int.Parse(hrsWorkedToday.Text);
-                hrsWorkedToday.Text = "";
+                if (hrsWorkedToday.Text != "")
+                { 
+                    selectedEmployee.HoursWorked += int.Parse(hrsWorkedToday.Text);
+                    hrsWorkedToday.Text = "";
+                }
 
                 selectedEmployee.Bonus = decimal.Parse(bonusTextBox.Text);
                 selectedEmployee.Deductions = decimal.Parse(deductionsTextBox.Text);

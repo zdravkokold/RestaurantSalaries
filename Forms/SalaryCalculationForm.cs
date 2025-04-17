@@ -10,6 +10,7 @@ namespace RestaurantSalaries
         {
             this.restaurantService = restaurantService;
             InitializeComponent();
+            FillEmployeeInfo();
         }
 
         private void SalaryCalculationForm_Load(object sender, EventArgs e)
@@ -39,6 +40,25 @@ namespace RestaurantSalaries
             decimal totalSalary = restaurantService.CalculateSalary(hoursWorked, hourlyRate, bonus, deductions);
 
             salaryTxt.Text = totalSalary.ToString();
-        }        
+        }
+
+        private void FillEmployeeInfo()
+        {
+            string? userName = Session.CurrentUser.UserName;
+            var employee = restaurantService.GetAllEmployees().FirstOrDefault(e => e.Name == userName);
+
+            if (Session.UserRole == "Employee")
+            {
+                if (employee != null)
+                {
+                    employeesDropdown.Text = employee.Name;
+                    hoursWorkedTxt.Text = employee.HoursWorked.ToString();
+                    hourlyRateTxt.Text = employee.HourlyRate.ToString();
+                    bonusTxt.Text = employee.Bonus.ToString();
+                    deductionsTxt.Text = employee.Deductions.ToString();
+                    salaryTxt.Text = employee.Salary.ToString();
+                }
+            }
+        }
     }
 }
